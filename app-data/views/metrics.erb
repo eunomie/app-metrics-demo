@@ -1,0 +1,15 @@
+status 1
+
+<% income[:cat].each do |(cat, val)| %>
+income{category="<%= cat.to_s %>"} <%= val %>
+<% end %>
+income_total <%= income[:total] %>
+
+<% products[:cat].each do |(cat, val)| %>
+products_sold{category="<%= cat.to_s %>"} <%= val %>
+<% end %>
+products_sold_total <%= products[:total] %>
+
+<% stock[:cat].each do |(cat, val)| %>
+available_stock{category="<%= cat.to_s %>"} <%= val %>
+<% end %>

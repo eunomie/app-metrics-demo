@@ -1,0 +1,33 @@
+version: '3'
+services:
+  prometheus:
+    build:
+      context: .
+      dockerfile: Dockerfile.prom
+    ports:
+      - "9090:9090"
+      - "9093:9093"
+    links:
+      - app
+    volumes:
+      - ./prometheus-data:/prometheus:Z
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:Z
+      - ./alerts.rules.yml:/etc/prometheus/alerts.rules.yml:Z
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./app-data:/usr/src/app:Z
+  grafana:
+    build:
+      context: .
+      dockerfile: Dockerfile.grafana
+    links:
+      - prometheus
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana-data/lib:/var/lib/grafana:Z

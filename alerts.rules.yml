@@ -1,0 +1,22 @@
+groups: 
+- name: alerts.rules
+  rules:
+  - alert: InstanceDown 
+    expr: up == 0 
+    for: 1s
+    labels:
+      severity: critical 
+    annotations:
+      description: '{{ $labels.instance }} of job {{ $labels.job }} has been down
+        for more than 1 second.'
+      summary: Instance {{ $labels.instance }} down
+  - alert: WarnStock200Units
+    expr: available_stock <= 200
+    for: 1s
+    labels:
+      severity: warning
+  - alert: StockUnder50
+    expr: available_stock <= 50
+    for: 1s
+    labels:
+      severity: critical

@@ -5,7 +5,7 @@ This repository contains a very simple demo of [prometheus](https://prometheus.i
 
 This demo allows to show how easy it is to scrape an application to create applicative metrics and not only resource monitoring.
 
-This is part of a talk about _applicative metrics_ presented at [Snowcamp 2018](http://sched.co/D2nb)
+This is part of a talk about _applicative metrics_ presented at [Snowcamp 2018](http://sched.co/D2nb): [slides (FR)](https://speakerdeck.com/eunomie/metriques-applicatives-avec-prometheus-et-grafana).
 
 Run
 ---

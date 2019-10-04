@@ -42,10 +42,6 @@ Configure
 
 ---
 
-With <3 from [squarescale](https://www.squarescale.com/) team!
-
----
-
 ```
         DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
                     Version 2, December 2004 

@@ -10,10 +10,18 @@ This is part of a talk about _applicative metrics_ presented at [Snowcamp 2018](
 Run
 ---
 
-    chmod 777 prometheus-data
+The demo can be run with docker-compose or docker stack (on a local swarm by example):
+
+### docker-compose
+
     docker-compose up
 
-This will build the three containers (prometheus, grafana and the app) and launch it.
+### docker stack
+
+    docker-compose build
+    docker stack deploy app-metrics-demo --compose-file docker-compose.yml
+
+This will build the three containers (prometheus, grafana and the app) and launch them.
 
 Browse
 ------

@@ -1,33 +1,39 @@
-version: '3'
+version: '3.7'
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+networks:
+  monitor-net:
 services:
   prometheus:
+    image: prom
     build:
       context: .
       dockerfile: Dockerfile.prom
     ports:
       - "9090:9090"
       - "9093:9093"
-    links:
-      - app
+    networks:
+      - monitor-net
     volumes:
-      - ./prometheus-data:/prometheus:Z
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:Z
-      - ./alerts.rules.yml:/etc/prometheus/alerts.rules.yml:Z
+      - prometheus_data:/prometheus:Z
   app:
+    image: app
     build:
       context: .
       dockerfile: Dockerfile.app
     ports:
       - "4000:4000"
-    volumes:
-      - ./app-data:/usr/src/app:Z
+    networks:
+      - monitor-net
   grafana:
+    image: graf
     build:
       context: .
       dockerfile: Dockerfile.grafana
-    links:
-      - prometheus
     ports:
       - "3000:3000"
+    networks:
+      - monitor-net
     volumes:
-      - ./grafana-data/lib:/var/lib/grafana:Z
+      - grafana_data:/var/lib/grafana:Z
